@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:textSize="14pt" android:id="@+id/lblWord" android:text="Erudite"/>
+<RadioGroup android:id="@+id/rgAnswers" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="7pt">
+    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:id="@+id/radio0" android:text="Having or showing great knowledge or learning."></RadioButton>
+    <RadioButton android:layout_width="wrap_content" android:id="@+id/radio1" android:layout_height="wrap_content" android:text="A mentally handicapped person. "></RadioButton>
+    <RadioButton android:layout_width="wrap_content" android:id="@+id/radio2" android:layout_height="wrap_content" android:text="A young duck."></RadioButton>
+     <RadioButton android:layout_width="wrap_content" android:id="@+id/radio3" android:layout_height="wrap_content" android:text="Take measures to check the quality, performance, or reliability of (something), esp. before putting it into widespread use or practice."></RadioButton>
+      <RadioButton android:layout_width="wrap_content" android:id="@+id/radio4" android:layout_height="wrap_content" android:text="A glamorous woman or girl."></RadioButton>
+</RadioGroup>
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:gravity="bottom|right">
+    <Button android:id="@+id/btnAnswer" android:layout_width="wrap_content" android:text="Answer" android:textSize="9pt" android:layout_height="wrap_content"></Button>
+</LinearLayout>
+</LinearLayout>
