@@ -10,6 +10,10 @@
       <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/txtWord" android:layout_weight="90" android:hint="Enter word to add"></EditText>
       <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btnWordSearch" android:text="S" android:layout_weight="10"></Button>
   </LinearLayout>
-  <ListView android:id="@+id/lstDefinitions" android:layout_height="wrap_content" android:layout_width="match_parent"></ListView>
+  <LinearLayout android:id="@+id/llDefinitionArea" android:layout_width="fill_parent" android:layout_height="wrap_content">
+  	  
+  </LinearLayout>
+  
+
  
 </LinearLayout>
