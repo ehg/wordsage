@@ -1,14 +1,24 @@
 package net.jumpwire.android.wordsage;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.markupartist.android.widget.ActionBar;
 import net.jumpwire.android.wordsage.adapters.SearchDefinitionAdapter;
 import net.jumpwire.android.wordsage.models.Dictionary;
 import net.jumpwire.android.wordsage.utility.UserInterface;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -17,11 +27,17 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
-public class AddWordActivity extends Activity {
+public class AddWordActivity extends Activity  {
 	
 	private BaseAdapter mAdapter;
 	private Context mContext;
+	private ArrayList<String> mDefinitions;
+	private String mWord;
+	private LinearLayout mLayoutDefinitions;
+	private ImageButton mBtnSearch;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +47,18 @@ public class AddWordActivity extends Activity {
 		
 		mContext = this;
 		final EditText txtWord = (EditText)findViewById(R.id.txtWord);
-		final LinearLayout llDefinitionArea = (LinearLayout)findViewById(R.id.llDefinitionArea);
-		llDefinitionArea.setOrientation(LinearLayout.VERTICAL);
-		LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		mLayoutDefinitions = (LinearLayout)findViewById(R.id.llDefinitionArea);
+		mLayoutDefinitions.setOrientation(LinearLayout.VERTICAL);
+		final LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
 		final View v = vi.inflate(R.layout.definition_item, null);
-        llDefinitionArea.addView(v);
+        mLayoutDefinitions.addView(v);
         
-        final EditText txtDefinition = (EditText)llDefinitionArea.findViewById(R.id.txtDefinition);
+        final LinearLayout llSearchButton = (LinearLayout)findViewById(R.id.llButtonArea);
+         mBtnSearch = (ImageButton)vi.inflate(R.layout.search_button_fragment, null);
+        llSearchButton.addView(mBtnSearch);
+        
+        final EditText txtDefinition = (EditText)mLayoutDefinitions.findViewById(R.id.txtDefinition);
       
         ImageButton btnAdd = (ImageButton)v.findViewById(R.id.btnAdd);
         
@@ -66,26 +86,62 @@ public class AddWordActivity extends Activity {
 			}
 		});
 		
-		Button btnSearch = (Button)findViewById(R.id.btnWordSearch);	
-		btnSearch.setOnClickListener(new View.OnClickListener() {
+	
+		mBtnSearch.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				//turn button into refreshing animation
-				llDefinitionArea.removeViewAt(0);
-				String word = txtWord.getText().toString();
-				ArrayList<String> definitions = Dictionary.fetchDefinitions(word);
+				llSearchButton.removeAllViews();
+				mLayoutDefinitions.removeAllViews();
+				
+			
+				mWord = txtWord.getText().toString();
 					
-				if (definitions == null) 
-				{
-					UserInterface.showToast(mContext, "Definition not found.");
-				} else displayDefinitions(llDefinitionArea, word, definitions);
+				new AddWord().execute();
+				
+						
+				
+				
+				//llSearchButton.removeAllViews();
 				
 			}
 
 			});
 	}
 		
+private class AddWord extends AsyncTask<String, Void, Void> {
+    	
+    	private ProgressBar mProgress;
+    	private String mResult = null;  
+    	private String mDebugMesage = null;
+    	private LinearLayout llSearchButton;
+    	
+    	protected void onPreExecute() {
+    		llSearchButton = (LinearLayout)findViewById(R.id.llButtonArea);
+    		LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    		mProgress = (ProgressBar)vi.inflate(R.layout.progressbar_fragment, null);
+			llSearchButton.addView(mProgress);		
+    	}
+
+		protected Void doInBackground(String... word) {
+			mDefinitions = Dictionary.fetchDefinitions(mWord);
+			return null;
+		}
+		
+		protected void onPostExecute(Void unused) {
+			
+			if (mDefinitions == null) 
+			{
+				UserInterface.showToast(mContext, "Definition not found.");
+			} else displayDefinitions(mLayoutDefinitions, mWord, mDefinitions);
+			
+			llSearchButton.removeAllViews();
+			llSearchButton.addView(mBtnSearch);
+		}
+    	
+    }
+	
 	private void displayDefinitions(
 			final LinearLayout llDefinitionArea, String word,
 			ArrayList<String> definitions) {

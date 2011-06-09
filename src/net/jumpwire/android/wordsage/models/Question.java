@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class Question {
 
-	private String mWord;
+	String mWord;
 	private String mDefinition;
 	private ArrayList<String> mAnswers;
 		
@@ -31,36 +31,8 @@ public class Question {
 
 	public static Question getRandom(Context context)
 	{
-		DictionaryOpenHelper dbOpen = new DictionaryOpenHelper(context);
-		SQLiteDatabase db = dbOpen.getWritableDatabase();
-		Question question = new Question();
-		
-		// get a random word and its definition
-		Cursor c = db.query(true, "dictionary", new String[] { "word", "definition" }, null, null, null, null, "RANDOM()", "1");
-		c.moveToFirst();
-		question.setName(c.getString(c.getColumnIndex("word")));
-		question.setDefinition(c.getString(c.getColumnIndex("definition")));
-		c.close();
-		
-		// populate an array with 4 random definitions and the correct one. don't select current word's definition
-		c = db.query(true, "dictionary", new String[] { "definition" }, "word != ?" , new String [] { question.mWord }, 
-					  null, null, "RANDOM()", "4");
-		c.moveToFirst();
-		
-		ArrayList<String> answers = new ArrayList<String>();
-		
-		answers.add(question.getDefinition());
-			
-		while (c.isAfterLast() == false)
-		{
-			answers.add(c.getString(c.getColumnIndex("definition")));
-			c.moveToNext();
-		}
-		c.close();
-		db.close();
-		Collections.shuffle(answers);
-		
-		question.setAnswers(answers);
+		Question question = Dictionary.getRandomWord(context);	
+		question.setAnswers(Dictionary.getRandomDefinitions(context, question));
 		
 		return question;
 	}

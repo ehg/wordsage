@@ -1,5 +1,6 @@
 package net.jumpwire.android.wordsage.models;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.jumpwire.android.wordsage.database.DictionaryOpenHelper;
@@ -60,5 +61,47 @@ public class Dictionary {
 		//get definition from dictionary.com
 		OnlineDictionary dict = new DictionaryDotCom();
 		return dict.getWordDefinitions(word);
+	}
+	
+	public static Question getRandomWord(Context context){
+		DictionaryOpenHelper dbOpen = new DictionaryOpenHelper(context);
+		SQLiteDatabase db = dbOpen.getWritableDatabase();
+		Question question = new Question();
+		
+		// get a random word and its definition
+		Cursor c = db.query(true, "dictionary", new String[] { "word", "definition" }, null, null, null, null, "RANDOM()", "1");
+		c.moveToFirst();
+		question.setName(c.getString(c.getColumnIndex("word")));
+		question.setDefinition(c.getString(c.getColumnIndex("definition")));
+		c.close();
+		db.close();
+		
+		return question;
+	}
+	
+	public static ArrayList<String> getRandomDefinitions(Context context, Question question)
+	{
+		DictionaryOpenHelper dbOpen = new DictionaryOpenHelper(context);
+		SQLiteDatabase db = dbOpen.getWritableDatabase();
+	
+		// populate an array with 4 random definitions and the correct one. don't select current word's definition
+		Cursor c = db.query(true, "dictionary", new String[] { "definition" }, "word != ?" , new String [] { question.mWord }, 
+					  null, null, "RANDOM()", "4");
+		c.moveToFirst();
+		
+		ArrayList<String> answers = new ArrayList<String>();
+		
+		answers.add(question.getDefinition());
+			
+		while (c.isAfterLast() == false)
+		{
+			answers.add(c.getString(c.getColumnIndex("definition")));
+			c.moveToNext();
+		}
+		c.close();
+		db.close();
+		
+		Collections.shuffle(answers);
+		return answers;
 	}
 }
