@@ -4,5 +4,4 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content" android:id="@+id/btnWordSearch"
 	android:src="@drawable/ic_btn_search"
-	android:background="@android:color/transparent"
-	android:layout_weight="10" />
+	android:background="@android:color/transparent" />

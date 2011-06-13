@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="#fff">
+		<com.markupartist.android.widget.ActionBar
+		android:id="@+id/actionbar" style="@style/ActionBar" />
+		<LinearLayout android:layout_width="match_parent" android:id="@+id/linearLayout2" android:layout_height="wrap_content" android:orientation="vertical" android:layout_weight="90">
+			<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:textSize="14pt"
+				android:id="@+id/lblWord" android:text="Erudite" 
+				android:textColor="#662D91"/>
+			<RadioGroup android:id="@+id/rgAnswers"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textSize="6pt">
+				<RadioButton style="@style/radioAnswersSmall" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/radio0" android:text="Having or showing great knowledge or learning."
+					/>
+				<RadioButton style="@style/radioAnswersSmall" android:layout_width="wrap_content"
+					android:id="@+id/radio1" android:layout_height="wrap_content"
+					android:text="A mentally handicapped person. "
+					 />
+				<RadioButton style="@style/radioAnswersSmall" android:layout_width="wrap_content"
+					android:id="@+id/radio2" android:layout_height="wrap_content"
+					android:text="A young duck." 
+					 />
+				<RadioButton style="@style/radioAnswersSmall" android:layout_width="wrap_content"
+					android:id="@+id/radio3" android:layout_height="wrap_content"
+					android:text="Take measures to check the quality, performance, or reliability of (something), esp. before putting it into widespread use or practice." 
+					 />
+				<RadioButton style="@style/radioAnswersSmall" android:layout_width="wrap_content"
+					android:id="@+id/radio4" android:layout_height="wrap_content"
+					android:text="A glamorous woman or girl." 
+					 />
+			</RadioGroup>
+	</LinearLayout>
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="wrap_content" android:id="@+id/linearLayout1"
+		android:gravity="bottom|right">
+		<Button android:id="@+id/btnAnswer" android:layout_width="wrap_content"
+			android:text="Answer" android:textSize="6pt" android:layout_height="20pt"/>
+	</LinearLayout>
+	<ImageView android:layout_width="wrap_content" android:id="@+id/imageView1" android:src="@drawable/dictionarydotcom" android:layout_height="wrap_content"></ImageView>
+</LinearLayout>

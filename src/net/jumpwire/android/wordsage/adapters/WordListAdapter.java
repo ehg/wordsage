@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
@@ -20,6 +21,21 @@ public class WordListAdapter extends CursorAdapter {
 
 	private final LayoutInflater mInflater;
 	private Cursor cursor;
+	private OnClickListener mClickListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			String id = (String)v.getTag();
+			Log.d("TAGGGGG", id + "");
+			DictionaryOpenHelper dho = new DictionaryOpenHelper(v.getContext());
+			SQLiteDatabase db = dho.getWritableDatabase();
+			db.delete("dictionary", "_id = ?", new String [] { id + "" });
+			db.close();
+			cursor.requery();
+			notifyDataSetChanged();
+			
+		}
+	};
 
     public WordListAdapter (Context context, Cursor c) {
         super(context, c);
@@ -27,6 +43,8 @@ public class WordListAdapter extends CursorAdapter {
         cursor = c;
     }
 
+    
+    
     @Override
     public View newView(Context context, Cursor c, ViewGroup parent) {
         View v = mInflater.inflate(R.layout.word_item, parent, false);
@@ -48,32 +66,27 @@ public class WordListAdapter extends CursorAdapter {
         TextView definition_text = (TextView) v.findViewById(R.id.lblListDefinition);
         ImageButton btnDelete = (ImageButton)v.findViewById(R.id.btnDelete);
 
-        word_text.setText(word);
-        Log.d("TAG", id + "");
-        definition_text.setText(def);
-        
-        if (btnDelete != null)
+        if (word_text != null)
         {
-	        btnDelete.setId(id);
-	        btnDelete.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					int id = v.getId();
-					Log.d("TAGGGGG", id + "");
-					DictionaryOpenHelper dho = new DictionaryOpenHelper(v.getContext());
-					SQLiteDatabase db = dho.getWritableDatabase();
-					db.delete("dictionary", "_id = ?", new String [] { id + "" });
-					db.close();
-					cursor.requery();
-				}
-	
-		
-			});
+        	word_text.setText(word);
+        	
+        }
+        if (definition_text != null)
+        {
+        	definition_text.setText(def);
         }
         
+        
+        
+        if (btnDelete != null) {
+        	Log.d("TAG", id + ":" + word);
+        	btnDelete.setTag(id + "");
+	        btnDelete.setOnClickListener(mClickListener);
+        }
+       
     }
     
     
+       
 
 }

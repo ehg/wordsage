@@ -4,20 +4,20 @@
 	android:orientation="vertical" android:background="#fff">
 	<com.markupartist.android.widget.ActionBar
 		android:id="@+id/actionbar" style="@style/ActionBar" />
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:id="@+id/linearLayout1">
+	<RelativeLayout android:background="#fff"
+		android:layout_width="fill_parent" android:id="@+id/relativeLayout1"
+		android:layout_height="wrap_content" xmlns:android="http://schemas.android.com/apk/res/android"
+		android:padding="3dip">
+		<LinearLayout android:id="@+id/llButtonArea"
+			android:layout_width="50dip" android:layout_height="wrap_content"
+			android:layout_alignParentRight="true" android:layout_centerVertical="true"
+			android:gravity="center" />
 		<EditText android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/txtWord"
-			android:layout_weight="90" android:hint="Enter word to add" />
-		<LinearLayout android:id="@+id/llButtonArea"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:padding="2pt">
-		</LinearLayout>
-	</LinearLayout>
+			android:hint="Enter word to add" android:layout_alignParentLeft="true"
+			android:layout_toLeftOf="@id/llButtonArea" android:singleLine="true" />
+	</RelativeLayout>
+
 	<LinearLayout android:id="@+id/llDefinitionArea"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />
-
-
-
-
-
 </LinearLayout>

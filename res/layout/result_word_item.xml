@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:background="#fff"
+	android:layout_width="fill_parent" android:id="@+id/relativeLayout1"
+	android:layout_height="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:padding="3dip">
+
+	<TextView android:text="TextView" android:id="@+id/lblWord"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:textColor="#424242" android:textSize="8pt" 
+		android:singleLine="true"
+		android:layout_alignParentLeft="true"
+		/>
+	<TextView android:text="BORING PIECE OF FUCKING SHIT FUCKING BOLLOCKS LONG CUNT" android:id="@+id/lblDefinition"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:textColor="#7F47DD" 
+		android:layout_below="@id/lblWord"
+		android:layout_alignParentLeft="true"
+		android:singleLine="false"
+		android:textSize="6pt"
+				/>	
+</RelativeLayout>

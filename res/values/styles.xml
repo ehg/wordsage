@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="radioAnswers" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:checked">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">#4F4F4F</item>
+    </style>
+        <style name="radioAnswersSmall" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:checked">true</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:textColor">#4F4F4F</item>
+    </style>
+</resources>
