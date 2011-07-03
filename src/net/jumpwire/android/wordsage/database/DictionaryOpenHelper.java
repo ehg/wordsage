@@ -1,5 +1,6 @@
 package net.jumpwire.android.wordsage.database;
 
+import net.jumpwire.android.wordsage.utility.Logging;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,7 +29,7 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    	Log.d("TAG", DICTIONARY_TABLE_CREATE);
+    	Log.d(Logging.TAG, DICTIONARY_TABLE_CREATE);
         db.execSQL(DICTIONARY_TABLE_CREATE);
         
         insertWord(db, "Erudite", "having or showing great knowledge or learning.");
@@ -114,10 +115,6 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.w("TAG", "Upgrading database from version " + oldVersion + " to "
-                + newVersion + ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS " + DICTIONARY_TABLE_NAME);
-        onCreate(db);
 		
 	}
 	

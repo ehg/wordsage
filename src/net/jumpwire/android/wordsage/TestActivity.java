@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import com.markupartist.android.widget.ActionBar;
 
 import net.jumpwire.android.wordsage.models.Question;
+import net.jumpwire.android.wordsage.utility.AutoResizeRadioButton;
 import net.jumpwire.android.wordsage.utility.UserInterface;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TestActivity extends Activity {
 	public static ArrayList<Question> mIncorrectQuestions;
@@ -73,12 +71,12 @@ public class TestActivity extends Activity {
 		radioGroup.clearCheck();
 		radioGroup.setOnCheckedChangeListener(mOnCheckedChange);
 		// set answers to radios
-		RadioButton radio = null;
+		AutoResizeRadioButton radio = null;
 
 		ArrayList<String> answers = mQuestion.getAnswers();
 
 		for (int i = 0; i < answers.size(); i++) {
-			radio = (RadioButton) findViewById(getResources().getIdentifier(
+			radio = (AutoResizeRadioButton) findViewById(getResources().getIdentifier(
 					"radio" + i, "id", getPackageName()));
 			radio.setText(answers.get(i));
 		}

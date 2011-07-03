@@ -15,24 +15,21 @@
 			android:layout_height="wrap_content" android:textSize="12pt"
 			android:id="@+id/lblWord" android:text="Erudite" android:textColor="#662D91" />
 		<RadioGroup android:id="@+id/rgAnswers"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:textSize="3pt">
-			<RadioButton style="@style/radioAnswers"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/radio0" android:text="Having or showing great knowledge or learning." />
-			<RadioButton style="@style/radioAnswers"
-				android:layout_width="wrap_content" android:id="@+id/radio1"
-				android:layout_height="wrap_content" android:text="A mentally handicapped person. " />
-			<RadioButton style="@style/radioAnswers"
-				android:layout_width="wrap_content" android:id="@+id/radio2"
-				android:layout_height="wrap_content" android:text="A young duck." />
-			<RadioButton style="@style/radioAnswers"
-				android:layout_width="wrap_content" android:id="@+id/radio3"
-				android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<net.jumpwire.android.wordsage.utility.AutoResizeRadioButton
+				style="@style/radioAnswers" android:id="@+id/radio0"
+				android:text="Having or showing great knowledge or learning." />
+			<net.jumpwire.android.wordsage.utility.AutoResizeRadioButton
+				style="@style/radioAnswers" android:id="@+id/radio1"
+				android:text="A mentally handicapped person. " />
+			<net.jumpwire.android.wordsage.utility.AutoResizeRadioButton
+				style="@style/radioAnswers" android:id="@+id/radio2" android:text="A young duck." />
+			<net.jumpwire.android.wordsage.utility.AutoResizeRadioButton
+				style="@style/radioAnswers" android:id="@+id/radio3"
+
 				android:text="Take measures to check the quality, performance, or reliability of (something), esp. before putting it into widespread use or practice." />
-			<RadioButton style="@style/radioAnswers"
-				android:layout_width="wrap_content" android:id="@+id/radio4"
-				android:layout_height="wrap_content" android:text="A glamorous woman or girl." />
+			<net.jumpwire.android.wordsage.utility.AutoResizeRadioButton
+				style="@style/radioAnswers" android:id="@+id/radio4" android:text="A glamorous woman or girl." />
 		</RadioGroup>
 	</LinearLayout>
 	<LinearLayout android:layout_width="match_parent"
@@ -41,6 +38,6 @@
 
 	<ImageView android:layout_width="wrap_content" android:id="@+id/imageView1"
 		android:src="@drawable/dictionarydotcom" android:layout_height="wrap_content"
-		android:layout_gravity="right" android:layout_margin="4dip"/>
+		android:layout_gravity="right" android:layout_margin="4dip" />
 
 </LinearLayout>

@@ -4,12 +4,7 @@ import net.jumpwire.android.wordsage.adapters.IncorrectWordAdapter;
 import net.jumpwire.android.wordsage.utility.UserInterface;
 
 import com.markupartist.android.widget.ActionBar;
-import com.markupartist.android.widget.ActionBar.Action;
-import com.markupartist.android.widget.ActionBar.IntentAction;
-
 import android.app.Activity;
-import android.content.Intent;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;

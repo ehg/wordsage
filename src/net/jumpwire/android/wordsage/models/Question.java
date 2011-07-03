@@ -1,13 +1,7 @@
 package net.jumpwire.android.wordsage.models;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
-import net.jumpwire.android.wordsage.database.DictionaryOpenHelper;
-
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 public class Question {
 

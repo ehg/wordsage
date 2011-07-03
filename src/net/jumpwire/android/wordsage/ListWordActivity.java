@@ -11,9 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
 public class ListWordActivity extends Activity {
 	/**
@@ -40,7 +38,6 @@ public class ListWordActivity extends Activity {
         
         Cursor cursor = db.query(true, "dictionary", columns, null , null, null, null, null, null);
         startManagingCursor(cursor);
-        Log.d("TAG", cursor.getCount() + "");
 		
 		WordListAdapter adapter = new WordListAdapter (getApplicationContext(), cursor);
 		

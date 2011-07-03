@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.jumpwire.android.wordsage.R;
 import net.jumpwire.android.wordsage.models.Question;
+import net.jumpwire.android.wordsage.utility.Logging;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class IncorrectWordAdapter extends BaseAdapter {
                Question q = mQuestions.get(position);
                TextView word = (TextView)v.findViewById(R.id.lblWord);
                TextView def = (TextView)v.findViewById(R.id.lblDefinition);
-               Log.d("TAGuuiuiui", q.getName());
+               Log.d(Logging.TAG, q.getName());
                word.setText(q.getName());
                def.setText(q.getDefinition());
                return v;

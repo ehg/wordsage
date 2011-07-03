@@ -1,20 +1,16 @@
 package net.jumpwire.android.wordsage.adapters;
 
 import net.jumpwire.android.wordsage.R;
-import net.jumpwire.android.wordsage.R.id;
-import net.jumpwire.android.wordsage.R.layout;
 import net.jumpwire.android.wordsage.database.DictionaryOpenHelper;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class WordListAdapter extends CursorAdapter {
@@ -26,14 +22,12 @@ public class WordListAdapter extends CursorAdapter {
 		@Override
 		public void onClick(View v) {
 			String id = (String)v.getTag();
-			Log.d("TAGGGGG", id + "");
 			DictionaryOpenHelper dho = new DictionaryOpenHelper(v.getContext());
 			SQLiteDatabase db = dho.getWritableDatabase();
 			db.delete("dictionary", "_id = ?", new String [] { id + "" });
 			db.close();
 			cursor.requery();
-			notifyDataSetChanged();
-			
+			notifyDataSetChanged();	
 		}
 	};
 
@@ -43,8 +37,6 @@ public class WordListAdapter extends CursorAdapter {
         cursor = c;
     }
 
-    
-    
     @Override
     public View newView(Context context, Cursor c, ViewGroup parent) {
         View v = mInflater.inflate(R.layout.word_item, parent, false);
@@ -67,19 +59,13 @@ public class WordListAdapter extends CursorAdapter {
         ImageButton btnDelete = (ImageButton)v.findViewById(R.id.btnDelete);
 
         if (word_text != null)
-        {
         	word_text.setText(word);
-        	
-        }
+     
         if (definition_text != null)
-        {
         	definition_text.setText(def);
-        }
         
-        
-        
+
         if (btnDelete != null) {
-        	Log.d("TAG", id + ":" + word);
         	btnDelete.setTag(id + "");
 	        btnDelete.setOnClickListener(mClickListener);
         }

@@ -8,7 +8,6 @@ import net.jumpwire.android.wordsage.dictionary_api.DictionaryDotCom;
 import net.jumpwire.android.wordsage.dictionary_api.OnlineDictionary;
 
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 

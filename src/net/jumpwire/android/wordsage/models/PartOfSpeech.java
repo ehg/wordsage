@@ -2,7 +2,6 @@ package net.jumpwire.android.wordsage.models;
 
 import java.util.List;
 
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 

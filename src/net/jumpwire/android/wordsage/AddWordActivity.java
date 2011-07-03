@@ -1,34 +1,23 @@
 package net.jumpwire.android.wordsage;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.markupartist.android.widget.ActionBar;
 import net.jumpwire.android.wordsage.adapters.SearchDefinitionAdapter;
 import net.jumpwire.android.wordsage.models.Dictionary;
 import net.jumpwire.android.wordsage.utility.UserInterface;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 public class AddWordActivity extends Activity  {
 	
@@ -117,18 +106,21 @@ private class AddWord extends AsyncTask<String, Void, Void> {
     	private String mDebugMesage = null;
     	private LinearLayout llSearchButton;
     	
-    	protected void onPreExecute() {
+    	@Override
+		protected void onPreExecute() {
     		llSearchButton = (LinearLayout)findViewById(R.id.llButtonArea);
     		LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     		mProgress = (ProgressBar)vi.inflate(R.layout.progressbar_fragment, null);
 			llSearchButton.addView(mProgress);		
     	}
 
+		@Override
 		protected Void doInBackground(String... word) {
 			mDefinitions = Dictionary.fetchDefinitions(mWord);
 			return null;
 		}
 		
+		@Override
 		protected void onPostExecute(Void unused) {
 			
 			if (mDefinitions == null) 
