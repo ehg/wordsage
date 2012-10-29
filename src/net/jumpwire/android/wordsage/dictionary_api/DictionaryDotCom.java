@@ -22,7 +22,7 @@ import android.util.Log;
 
 public class DictionaryDotCom implements OnlineDictionary {
 	
-	private static final String API_KEY = "my0f9jdq1ig5ptm499cgszb3jvgup66b47rer44snl"; 
+	private static final String API_KEY = ""; 
 	private static final String API_URL = "http://api-pub.dictionary.com/v001"; 
 	
 	private DefaultHttpClient client = new DefaultHttpClient();
